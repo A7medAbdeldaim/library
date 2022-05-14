@@ -82,6 +82,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ route('admin.teachers') }}" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>Teachers</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('admin.admins') }}" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>Admins</p>
@@ -98,6 +104,12 @@
                             <a href="{{ route('admin.books') }}" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>Books</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.magazines') }}" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>Magazines</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -142,6 +154,13 @@
                             <a href="{{ route('librarian.book_requests') }}" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>Book Requests</p>
+                            </a>
+                        </li>
+                    @elseif (auth('teachers')->check())
+                        <li class="nav-item">
+                            <a href="{{ route('teacher.messages') }}" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>Messages</p>
                             </a>
                         </li>
                     @endif

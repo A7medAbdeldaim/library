@@ -12,7 +12,7 @@ class Book extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name_ar', 'name_en', 'description_ar', 'description_en', 'image', 'price', 'stock', 'library_id'
+        'name_ar', 'name_en', 'description_ar', 'description_en', 'image', 'price', 'stock', 'library_id', 'type'
     ];
 
     public function getNameAttribute() {

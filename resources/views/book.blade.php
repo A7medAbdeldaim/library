@@ -22,6 +22,16 @@
                 @else
                     <a data-target="#request_book" data-toggle="modal" class="btn btn-danger btn-block">Out of Stock (Request Book)</a>
                 @endif
+                @if (auth('users')->check())
+                    @if ($teacher)
+                        <a data-target="#message_teacher" data-toggle="modal" class="btn btn-success btn-block">Message Teacher</a>
+                    @else
+                        <a class="btn btn-danger btn-block" onclick="alert('This book does not have a teacher')">Message Teacher</a>
+                    @endif
+                @else
+                    <a class="btn btn-danger btn-block" onclick="alert('Please Login First')">Message Teacher</a>
+                @endif
+
             </div>
             <div class="col-8">
                 <p><b>Description:</b></p>
@@ -152,6 +162,36 @@
                             <button type="submit" class="btn btn-success col-md-12">Request Book</button>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="message_teacher">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title align-items-end">Message Teacher</h3>
+                    </div>
+                    <div class="card-body">
+                    <!-- form start -->
+                        <form role="form"
+                              action="{{ route('books.send_message', $teacher->id ?? 0) }}"
+                              method="post">
+                            @csrf
+
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea class="form-control" type="text" id="message" name="message" required></textarea>
+                            </div>
+
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-success col-md-12">Message</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

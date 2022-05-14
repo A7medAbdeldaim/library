@@ -12,15 +12,15 @@ use function abort;
 use function redirect;
 use function view;
 
-class BooksController extends Controller {
+class MagazinesController extends Controller {
     public function index() {
-        $books = Book::where('type', 'book')->get();
-        return view('admin.Books.books', ['books' => $books]);
+        $magazines = Book::where('type', 'magazine')->get();
+        return view('admin.Magazines.magazines', ['books' => $magazines]);
     }
 
     public function create() {
         $libraries = Library::all();
-        return view('admin.Books.add_book', compact('libraries'));
+        return view('admin.Magazines.add_magazine', compact('libraries'));
     }
 
     public function store(Request $request) {
@@ -39,21 +39,21 @@ class BooksController extends Controller {
 
         $request = $request->except('_token', 'image');
 
-         Book::create($request + ['image' => $fileName ?? null]);
+         Book::create($request + ['image' => $fileName ?? null, 'type' => 'magazine']);
 
-        return redirect()->route('admin.books')->with(['status' => 'success', 'message' => 'Book Added Successfully']);
+        return redirect()->route('admin.magazines')->with(['status' => 'success', 'message' => 'Magazine Added Successfully']);
     }
 
     public function edit($id){
         $libraries = Library::all();
         $book = Book::find($id);
-        return view('admin.Books.edit_book', compact('book', 'libraries'));
+        return view('admin.Magazines.edit_magazine', compact('book', 'libraries'));
     }
 
     public function update(Request $request, $id) {
-        $book = Book::find($id);
+        $magazine = Book::find($id);
 
-        if (!$book) {
+        if (!$magazine) {
             abort(404);
         }
 
@@ -72,20 +72,20 @@ class BooksController extends Controller {
 
         $request = $request->except('_token', 'image');
 
-        $book->update($request + ['image' => $fileName ?? $book->image]);
+        $magazine->update($request + ['image' => $fileName ?? $magazine->image]);
 
-        return redirect()->route('admin.books')->with(['status' => 'success', 'message' => 'Book Edited Successfully']);
+        return redirect()->route('admin.magazines')->with(['status' => 'success', 'message' => 'Magazine Edited Successfully']);
     }
 
     public function destroy($id) {
-        $book = Book::find($id);
+        $magazine = Book::find($id);
 
-        if (!$book) {
+        if (!$magazine) {
             abort(404);
         }
-        $book->delete();
+        $magazine->delete();
 
-        return redirect()->route('admin.books')->with(['status' => 'success', 'message' => 'Book Deleted Successfully']);
+        return redirect()->route('admin.magazines')->with(['status' => 'success', 'message' => 'Magazine Deleted Successfully']);
     }
 
     public function uploadImage($file) {
