@@ -30,13 +30,14 @@
 
                                     </div>
 
-                                    <div class="d-flex mb-5 align-items-center">
-                                        <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>
-                                    </div>
-
                                     <input type="submit" value="Sign In"
                                            class="btn btn-pill text-white btn-block btn-primary">
 
+                                    <hr>
+                                    <div class="d-flex mb-5 align-items-center">
+                                        <span class="ml-auto"><a href="{{ route('librarian.showLoginForm') }}" class="forgot-pass">Not a Student? Sign in as a Librarian</a></span>
+                                        <span class="ml-auto"><a href="{{ route('teacher.showLoginForm') }}" class="forgot-pass">Not a Student? Sign in as a Teacher</a></span>
+                                    </div>
                                 </form>
                             </div>
                         </div>
